@@ -1,12 +1,14 @@
-#CONTROLADOR
 
+#CONTROLADOR
+from django.core.files.storage import FileSystemStorage
 from rest_framework import generics #para microservicio
 from apiSNN import models
 from apiSNN import serializers
-
+import os
 from django.shortcuts import render
 import pyrebase #para consumo servicio base de datos de firebase
 from apiSNN.Logica import modeloSNN #para utilizar modelo SNN
+from apiSNN.Logica import modeloCNN
 
 # Create your views here.
 class ListLibro(generics.ListCreateAPIView):
@@ -58,6 +60,21 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
+
+class MachineLearning():
+    def index(request):
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+        if request.method == 'POST':
+            archivo = request.FILES['imagen']
+
+            fileStorage = FileSystemStorage()
+            fileStorage.save(archivo.name, archivo)
+
+            file = BASE_DIR +'/media/' + archivo.name
+            retorno = modeloCNN.predecir(file)
+            return render(request, "Resultado.html", {"fruta": retorno.get('pred'), "porcentaje": retorno.get('porcentaje')})
+        return render(request, "frutas.html")
 
 class Autenticacion():
 

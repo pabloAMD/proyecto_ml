@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificacion de frutas</title>
+
+    <style type="text/css">
+        body {
+	            background-image: url(https://previews.123rf.com/images/taiga/taiga1409/taiga140900040/31424568-diferentes-frutas-org%C3%A1nicas-con-gotas-de-agua-sobre-fondo-de-la-tabla-de-madera-comida-sana.jpg);
+	            background-repeat: no-repeat;
+	            background-size: cover;
+	            background-attachment: fixed;
+            }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <form action="/apiSNN/predecir/" method="POST" enctype="multipart/form-data"  style="float: center;   padding: 200px 0px 0px 850px; ">
+        {% csrf_token %}
+        <h1>Red Convolucional</h1>
+        <h2>El sistema predesira la imagen seleccionada</h2>
+
+        Ingresa una imagen:
+
+        <input name="imagen" type="file" />   
+
+        <p><input type="submit" value="PREDECIR"></p>
+    </form>
+    {% endblock %}
+
+</body>
+</html>

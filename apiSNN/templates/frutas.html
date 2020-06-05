@@ -8,24 +8,32 @@
     <style type="text/css">
         body {
 	            background-image: url(https://previews.123rf.com/images/taiga/taiga1409/taiga140900040/31424568-diferentes-frutas-org%C3%A1nicas-con-gotas-de-agua-sobre-fondo-de-la-tabla-de-madera-comida-sana.jpg);
+                -webkit-filter: brightness(50%);
+filter: brightness(50%);
 	            background-repeat: no-repeat;
 	            background-size: cover;
 	            background-attachment: fixed;
+
             }
     </style>
 </head>
 <body>
     {% block content %}
-    <form action="/apiSNN/predecir/" method="POST" enctype="multipart/form-data"  style="float: center;   padding: 200px 0px 0px 850px; ">
+    <form action="/apiSNN/predecir/" method="POST" enctype="multipart/form-data"  style="padding: 100px 0px 0px 800px;">
         {% csrf_token %}
-        <h1>Red Convolucional</h1>
-        <h2>El sistema predesira la imagen seleccionada</h2>
+        <h1 style="font-size: 60px; font-family: 'Times New Roman'">Red Convolucional</h1>
+        <p style="font-family: 'Times New Roman'; font-size: 20px; text-align: justify; color:black"><b>Se busca realizar la predicción de una imágen que contenga una fruta, para ello se ha realizado una Red Neuronal
+        Convolucional, este filtrará las características de la imágenes mediante capas, y posteriormente será analizado por
+        nuestro modelo neuronal.</b></p>
 
-        Ingresa una imagen:
+        <h2 style="color:red;">El sistema predecirá la imagen seleccionada</h2>
 
-        <input name="imagen" type="file" />   
+        <p style="font-size: 19px"> <b>Ingresa una imagen:</b>
 
-        <p><input type="submit" value="PREDECIR"></p>
+        <input style="font-size: 19px" name="imagen" type="file" /> </p>
+
+        <input type="submit" value="PREDECIR">
+
     </form>
     {% endblock %}
 

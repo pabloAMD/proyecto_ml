@@ -5,6 +5,8 @@ from tensorflow.keras.models import model_from_json
 
 
 def predecir(url_imagen):
+    direc=url_imagen
+
     imagen = image.load_img(path=url_imagen, target_size=(35, 35, 3))
     imagen = image.img_to_array(imagen)
     imagen /= 255

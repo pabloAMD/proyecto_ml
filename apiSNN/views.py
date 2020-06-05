@@ -73,8 +73,11 @@ class MachineLearning():
 
             file = BASE_DIR +'/media/' + archivo.name
             retorno = modeloCNN.predecir(file)
-            return render(request, "Resultado.html", {"fruta": retorno.get('pred'), "porcentaje": retorno.get('porcentaje')})
+
+            return render(request, "Resultado.html", {"direc":file,"fruta": retorno.get('pred'), "porcentaje": retorno.get('porcentaje')})
         return render(request, "frutas.html")
+
+
 
 class Autenticacion():
 
